@@ -1,0 +1,7 @@
+{
+  "name": "wasm-renderer",
+  "version": "0.0.0",
+  "scripts": {
+    "build": "wasm-pack build --out-dir web/wasm --target web"
+  }
+}

@@ -27,6 +27,7 @@ features = [
   'Element',
   'HtmlCanvasElement',
   'Window',
+  'console'
 ]
 
 [profile.release]
