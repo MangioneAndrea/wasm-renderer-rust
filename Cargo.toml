@@ -1,8 +1,8 @@
 [package]
-name = "wasm-renderer"
-version = "0.1.0"
 authors = ["Andrea Mangione <35958935+MangioneAndrea@users.noreply.github.com>"]
 edition = "2018"
+name = "wasm-renderer"
+version = "0.1.0"
 
 [lib]
 crate-type = ["cdylib", "rlib"]
@@ -11,25 +11,31 @@ crate-type = ["cdylib", "rlib"]
 default = ["console_error_panic_hook"]
 
 [dependencies]
-console_error_panic_hook = { version = "0.1.6", optional = true }
-wee_alloc = { version = "0.4.5", optional = true }
+console_error_panic_hook = {version = "0.1.6", optional = true}
 js-sys = "0.3.57"
 wasm-bindgen = "0.2.80"
+wee_alloc = {version = "0.4.5", optional = true}
 
 [dev-dependencies]
 wasm-bindgen-test = "0.3.13"
 
 [dependencies.web-sys]
-version = "0.3.4"
 features = [
   'CanvasRenderingContext2d',
   'Document',
   'Element',
   'HtmlCanvasElement',
   'Window',
-  'console'
+  'console',
+  'ImageData',
 ]
+version = "0.3.4"
 
 [profile.release]
 # Tell `rustc` to optimize for small code size.
 opt-level = "s"
+
+[target.wasm32-unknown-unknown]
+rustflags = [
+  "-C", "link-args=-z stack-size=15000000",
+]

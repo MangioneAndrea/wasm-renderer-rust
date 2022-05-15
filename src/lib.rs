@@ -5,15 +5,19 @@ mod geometry {
         pub mod triangle;
     }
 }
+mod engine {
+    pub mod ruster;
+}
+use engine::ruster::Ruster;
 use geometry::point;
 use geometry::two_d::triangle;
 
-use std::cmp;
 use wasm_bindgen::prelude::*;
 use wasm_bindgen::JsCast;
 
-const WIDTH: f64 = 1600.0;
-const HEIGHT: f64 = 1600.0;
+const WIDTH: u32 = 100;
+const HEIGHT: u32 = 800;
+const SIZE: usize = (HEIGHT * WIDTH) as usize;
 
 // When the `wee_alloc` feature is enabled, use `wee_alloc` as the global
 // allocator.
@@ -41,30 +45,10 @@ extern "C" {
 
 #[wasm_bindgen(start)]
 pub fn start() {
-    let document = web_sys::window().unwrap().document().unwrap();
-    let canvas = document.get_element_by_id("canvas").unwrap();
-    let canvas: web_sys::HtmlCanvasElement = canvas
-        .dyn_into::<web_sys::HtmlCanvasElement>()
-        .map_err(|_| ())
-        .unwrap();
-
-    let ctx = canvas
-        .get_context("2d")
-        .unwrap()
-        .unwrap()
-        .dyn_into::<web_sys::CanvasRenderingContext2d>()
-        .unwrap();
 
     let t: triangle::Triangle<f64> = triangle::Triangle {
         a: point::Point2D { x: 0.0, y: 0.0 },
         b: point::Point2D { x: 0.0, y: 0.0 },
         c: point::Point2D { x: 0.0, y: 0.0 },
     };
-    ctx.begin_path();
-    ctx.move_to(10.0, 10.0);
-    ctx.line_to(100.0, 50.0);
-    ctx.line_to(50.0, 100.0);
-    ctx.line_to(0.0, 90.0);
-    ctx.close_path();
-    ctx.stroke();
 }
