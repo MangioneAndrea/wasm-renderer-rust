@@ -1,6 +1,7 @@
 use super::super::point;
 use std::ops;
 
+#[derive(Copy, Clone)]
 pub struct Matrix2x2 {
     a: i64,
     b: i64,

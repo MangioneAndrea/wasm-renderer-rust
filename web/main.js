@@ -1,20 +1,22 @@
 import init, * as wasm from "./wasm";
 
-export const draw = (ruster) => {
-  console.log(ruster.pixels());
+export const draw = (raster) => {
+  console.log(raster.pixels());
 };
 
 await init();
 
-const ruster = new wasm.Ruster(800, 800);
+const raster = new wasm.Raster(1600, 1600);
 
 const canvas = document.getElementById("canvas");
 /** @type {CanvasRenderingContext2D} */
 const ctx = canvas.getContext("2d");
-console.log(ruster.pixels().length);
+console.log(raster.pixels());
+window.raster=raster;
 const imageData = new ImageData(
-  new Uint8ClampedArray(ruster.pixels()),
-  ruster.height(),
-  ruster.width()
+  new Uint8ClampedArray(raster.pixels()),
+  raster.height()
 );
+
+window.ctx=ctx;
 ctx.putImageData(imageData, 0, 0);

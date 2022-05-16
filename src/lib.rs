@@ -7,9 +7,9 @@ mod geometry {
     }
 }
 mod engine {
-    pub mod ruster;
+    pub mod raster;
 }
-use engine::ruster::Ruster;
+use engine::raster::Raster;
 use geometry::point;
 use geometry::two_d::triangle;
 

@@ -12,47 +12,55 @@ pub struct Pixel {
 }
 
 #[wasm_bindgen]
-pub struct Ruster {
+pub struct Raster {
     pixels: Vec<Pixel>,
     width: usize,
     height: usize,
 }
 
 #[wasm_bindgen]
-impl Ruster {
+impl Raster {
     #[wasm_bindgen(constructor)]
-    pub fn new(width: usize, height: usize) -> Ruster {
+    pub fn new(width: usize, height: usize) -> Raster {
         let mut pixels = Vec::new();
         pixels.resize(
             width * height,
             Pixel {
-                r: 0,
-                g: 0,
-                b: 0,
-                depth: 0xF,
+                r: 255,
+                g: 255,
+                b: 255,
+                depth: 255,
             },
         );
         let t: triangle::Triangle = triangle::Triangle {
             a: point::Point2D { x: 0, y: 0 },
-            b: point::Point2D { x: 150, y: 120 },
-            c: point::Point2D { x: 233, y: 75 },
+            b: point::Point2D { x: 150, y: 0 },
+            c: point::Point2D { x: 150, y: 150 },
         };
 
-        let ruster = Ruster {
+        let o: triangle::Triangle = triangle::Triangle {
+            a: point::Point2D { x: 0, y: 0 },
+            b: point::Point2D { x: 0, y: 150 },
+            c: point::Point2D { x: 150, y: 150 },
+        };
+
+        let mut raster = Raster {
             pixels,
             width,
             height,
         };
 
-        t.draw(&ruster);
+        o.draw(&mut raster);
+        t.draw(&mut raster);
 
-        ruster
+
+        raster
     }
 
     pub fn pixels(&self) -> Vec<u8> {
         self.pixels
             .iter()
-            .map(|&pixel| vec![pixel.r, pixel.g, pixel.b, 0])
+            .map(|&pixel| vec![pixel.r, pixel.g, pixel.b, 255])
             .collect::<Vec<Vec<u8>>>()
             .concat()
     }
@@ -63,7 +71,7 @@ impl Ruster {
         self.height
     }
 }
-impl Ruster {
+impl Raster {
     pub fn set(&mut self, x: usize, y: usize, pixel: Pixel) {
         self.pixels[y * self.width + x] = pixel;
     }

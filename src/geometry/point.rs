@@ -3,7 +3,7 @@ use std::ops;
 
 pub trait Num: PartialEq + num_traits::Num + std::cmp::Ord {}
 
-#[derive(Eq)]
+#[derive(Eq, Copy, Clone)]
 pub struct Point2D {
     pub x: i64,
     pub y: i64,
