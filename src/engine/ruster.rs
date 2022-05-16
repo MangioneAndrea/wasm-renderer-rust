@@ -4,11 +4,11 @@ use wasm_bindgen::prelude::*;
 
 //use crate::{HEIGHT, SIZE, WIDTH};
 #[derive(Clone, Copy)]
-struct Pixel {
-    r: u8,
-    g: u8,
-    b: u8,
-    depth: u8,
+pub struct Pixel {
+    pub r: u8,
+    pub g: u8,
+    pub b: u8,
+    pub depth: u8,
 }
 
 #[wasm_bindgen]
@@ -32,29 +32,21 @@ impl Ruster {
                 depth: 0xF,
             },
         );
-        let t: triangle::Triangle<f64> = triangle::Triangle {
-            a: point::Point3D {
-                x: 0.0,
-                y: 0.0,
-                z: 0.0,
-            },
-            b: point::Point3D {
-                x: 0.0,
-                y: 0.0,
-                z: 0.0,
-            },
-            c: point::Point3D {
-                x: 0.0,
-                y: 0.0,
-                z: 0.0,
-            },
+        let t: triangle::Triangle = triangle::Triangle {
+            a: point::Point2D { x: 0, y: 0 },
+            b: point::Point2D { x: 150, y: 120 },
+            c: point::Point2D { x: 233, y: 75 },
         };
 
-        Ruster {
+        let ruster = Ruster {
             pixels,
             width,
             height,
-        }
+        };
+
+        t.draw(&ruster);
+
+        ruster
     }
 
     pub fn pixels(&self) -> Vec<u8> {
@@ -69,5 +61,10 @@ impl Ruster {
     }
     pub fn height(&self) -> usize {
         self.height
+    }
+}
+impl Ruster {
+    pub fn set(&mut self, x: usize, y: usize, pixel: Pixel) {
+        self.pixels[y * self.width + x] = pixel;
     }
 }

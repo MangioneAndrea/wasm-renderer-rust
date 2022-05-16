@@ -2,17 +2,17 @@ mod two_d {
     pub mod triangle;
 }
 
-struct Cube<T> {
-    FrontA: triangle::Triangle<T>,
-    FrontB: triangle::Triangle<T>,
-    BackA: triangle::Triangle<T>,
-    BackB: triangle::Triangle<T>,
-    TopA: triangle::Triangle<T>,
-    TopB: triangle::Triangle<T>,
-    BottomA: triangle::Triangle<T>,
-    BottomB: triangle::Triangle<T>,
-    LeftA: triangle::Triangle<T>,
-    LeftB: triangle::Triangle<T>,
-    RightA: triangle::Triangle<T>,
-    RightB: triangle::Triangle<T>,
+struct Cube {
+    FrontA: triangle::Triangle,
+    FrontB: triangle::Triangle,
+    BackA: triangle::Triangle,
+    BackB: triangle::Triangle,
+    TopA: triangle::Triangle,
+    TopB: triangle::Triangle,
+    BottomA: triangle::Triangle,
+    BottomB: triangle::Triangle,
+    LeftA: triangle::Triangle,
+    LeftB: triangle::Triangle,
+    RightA: triangle::Triangle,
+    RightB: triangle::Triangle,
 }

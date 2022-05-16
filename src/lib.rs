@@ -1,6 +1,7 @@
 mod utils;
 mod geometry {
     pub mod point;
+    pub mod matrix;
     pub mod two_d {
         pub mod triangle;
     }
@@ -46,9 +47,4 @@ extern "C" {
 #[wasm_bindgen(start)]
 pub fn start() {
 
-    let t: triangle::Triangle<f64> = triangle::Triangle {
-        a: point::Point2D { x: 0.0, y: 0.0 },
-        b: point::Point2D { x: 0.0, y: 0.0 },
-        c: point::Point2D { x: 0.0, y: 0.0 },
-    };
 }
