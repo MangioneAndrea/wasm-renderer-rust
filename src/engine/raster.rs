@@ -1,5 +1,6 @@
 use super::super::geometry::point;
 use super::super::geometry::two_d::triangle;
+use super::super::geometry::three_d::cube;
 use wasm_bindgen::prelude::*;
 
 //use crate::{HEIGHT, SIZE, WIDTH};
@@ -33,16 +34,17 @@ impl Raster {
             },
         );
         let t: triangle::Triangle = triangle::Triangle {
-            a: point::Point2D { x: 0, y: 0 },
-            b: point::Point2D { x: 150, y: 0 },
-            c: point::Point2D { x: 150, y: 150 },
+            a: nalgebra::Vector2::new(0.0, 0.0),
+            b: nalgebra::Vector2::new(1500.0, 0.0),
+            c: nalgebra::Vector2::new(1500.0, 1500.0),
         };
 
         let o: triangle::Triangle = triangle::Triangle {
-            a: point::Point2D { x: 0, y: 0 },
-            b: point::Point2D { x: 0, y: 150 },
-            c: point::Point2D { x: 150, y: 150 },
+            a: nalgebra::Vector2::new(0.0, 0.0),
+            b: nalgebra::Vector2::new(0.0, 1500.0),
+            c: nalgebra::Vector2::new(1500.0, 1500.0),
         };
+
 
         let mut raster = Raster {
             pixels,
@@ -71,6 +73,7 @@ impl Raster {
         self.height
     }
 }
+
 impl Raster {
     pub fn set(&mut self, x: usize, y: usize, pixel: Pixel) {
         self.pixels[y * self.width + x] = pixel;

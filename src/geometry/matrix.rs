@@ -28,6 +28,10 @@ impl Matrix2x2 {
         }
     }
 
+    pub fn to_string(&self) -> String{
+        format!("{} {} \n {} {}",self.a.to_string(),self.b.to_string(),self.c.to_string(),self.d.to_string())
+    }
+
     pub fn invert(&self) -> Matrix2x2 {
         Matrix2x2 {
             a: self.d,

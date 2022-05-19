@@ -5,6 +5,9 @@ mod geometry {
     pub mod two_d {
         pub mod triangle;
     }
+    pub mod three_d {
+        pub mod cube;
+    }
 }
 mod engine {
     pub mod raster;
@@ -37,7 +40,7 @@ extern "C" {
     // signatures. Note that we need to use `js_name` to ensure we always call
     // `log` in JS.
     #[wasm_bindgen(js_namespace = console, js_name = log)]
-    fn log_u32(a: u32);
+    fn log_i64(a: i64);
 
     // Multiple arguments too!
     #[wasm_bindgen(js_namespace = console, js_name = log)]
@@ -46,5 +49,5 @@ extern "C" {
 
 #[wasm_bindgen(start)]
 pub fn start() {
-
+    log("hello from rust")
 }

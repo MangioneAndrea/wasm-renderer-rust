@@ -1,8 +1,6 @@
-mod two_d {
-    pub mod triangle;
-}
+use super::super::super::triangle;
 
-struct Cube {
+pub struct Cube {
     FrontA: triangle::Triangle,
     FrontB: triangle::Triangle,
     BackA: triangle::Triangle,
@@ -15,4 +13,8 @@ struct Cube {
     LeftB: triangle::Triangle,
     RightA: triangle::Triangle,
     RightB: triangle::Triangle,
+}
+
+impl Cube {
+
 }
