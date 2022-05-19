@@ -4,9 +4,9 @@ use super::super::matrix;
 use super::super::point;
 
 pub struct Triangle {
-    pub a: nalgebra::Vector2<f32>,
-    pub b: nalgebra::Vector2<f32>,
-    pub c: nalgebra::Vector2<f32>,
+    pub a: nalgebra::Vector3<f32>,
+    pub b: nalgebra::Vector3<f32>,
+    pub c: nalgebra::Vector3<f32>,
 }
 
 

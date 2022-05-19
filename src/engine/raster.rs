@@ -34,17 +34,21 @@ impl Raster {
             },
         );
         let t: triangle::Triangle = triangle::Triangle {
-            a: nalgebra::Vector2::new(0.0, 0.0),
-            b: nalgebra::Vector2::new(1500.0, 0.0),
-            c: nalgebra::Vector2::new(1500.0, 1500.0),
+            a: nalgebra::Vector3::new(0.0, 0.0, 0.0),
+            b: nalgebra::Vector3::new(1500.0, 0.0, 0.0),
+            c: nalgebra::Vector3::new(1500.0, 1500.0, 0.0),
         };
 
         let o: triangle::Triangle = triangle::Triangle {
-            a: nalgebra::Vector2::new(0.0, 0.0),
-            b: nalgebra::Vector2::new(0.0, 1500.0),
-            c: nalgebra::Vector2::new(1500.0, 1500.0),
+            a: nalgebra::Vector3::new(0.0, 0.0, 0.0),
+            b: nalgebra::Vector3::new(0.0, 1500.0, 0.0),
+            c: nalgebra::Vector3::new(1500.0, 1500.0, 0.0),
         };
 
+        let c = cube::Cube::new(
+            nalgebra::Vector3::new(500.0, 500.0, 0.0),
+            nalgebra::Vector3::new(500.0, 500.0, 0.0),
+        );
 
         let mut raster = Raster {
             pixels,
@@ -52,8 +56,10 @@ impl Raster {
             height,
         };
 
-        o.draw(&mut raster);
-        t.draw(&mut raster);
+        //o.draw(&mut raster);
+        //t.draw(&mut raster);
+
+        c.draw(&mut raster);
 
 
         raster
