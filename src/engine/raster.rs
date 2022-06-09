@@ -33,17 +33,16 @@ impl Raster {
                 depth: 255,
             },
         );
-        let t: triangle::Triangle = triangle::Triangle {
-            a: nalgebra::Vector3::new(0.0, 0.0, 0.0),
-            b: nalgebra::Vector3::new(1500.0, 0.0, 0.0),
-            c: nalgebra::Vector3::new(1500.0, 1500.0, 0.0),
-        };
+        let t: triangle::Triangle = triangle::Triangle::new_random_color(
+            nalgebra::Vector3::new(0.0, 0.0, 0.0),
+            nalgebra::Vector3::new(1500.0, 400.0, 0.0),
+            nalgebra::Vector3::new(1500.0, 1500.0, 0.0),
+        );
 
-        let o: triangle::Triangle = triangle::Triangle {
-            a: nalgebra::Vector3::new(0.0, 0.0, 0.0),
-            b: nalgebra::Vector3::new(0.0, 1500.0, 0.0),
-            c: nalgebra::Vector3::new(1500.0, 1500.0, 0.0),
-        };
+        let o: triangle::Triangle = triangle::Triangle::new_random_color(nalgebra::Vector3::new(0.0, 0.0, 0.0),
+                                                                         nalgebra::Vector3::new(0.0, 1500.0, 0.0),
+                                                                         nalgebra::Vector3::new(1500.0, 1500.0, 0.0),
+        );
 
         let c = cube::Cube::new(
             nalgebra::Vector3::new(500.0, 500.0, 0.0),
@@ -56,8 +55,8 @@ impl Raster {
             height,
         };
 
-        //o.draw(&mut raster);
-        //t.draw(&mut raster);
+        o.draw(&mut raster);
+        t.draw(&mut raster);
 
         c.draw(&mut raster);
 
@@ -72,9 +71,11 @@ impl Raster {
             .collect::<Vec<Vec<u8>>>()
             .concat()
     }
+
     pub fn width(&self) -> usize {
         self.width
     }
+
     pub fn height(&self) -> usize {
         self.height
     }
